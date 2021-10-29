@@ -74,3 +74,9 @@ Pinout
 | D6  | 12 | OUT | Status LED     |
 
 Numbers denote Arduino pins.
+
+
+Building a dual 12A bidirectional ESC
+-------------------------------------
+
+Check out this [How-To](https://github.com/neoxic/STM8-RC-PWM-Mixer#building-a-dual-12a-bidirectional-esc) for more information.
