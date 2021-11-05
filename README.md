@@ -22,7 +22,7 @@ Supported MCUs
 Dependencies
 ------------
 
-+ cmake >= 3.12
++ cmake
 + avr-gcc
 + avr-libc
 + avrdude
@@ -54,7 +54,7 @@ To install on the device using AVRDUDE, run (with your own programmer):
 
 or for Teensy 2.0:
 
-    make flash_teensy
+    make flash-teensy
 
 
 Pinout

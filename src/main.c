@@ -174,7 +174,7 @@ static int uart_putchar(char c, FILE *f) {
   return 0;
 }
 
-int main(void) {
+void main(void) {
 	CLKPR = 0x80;
 #ifdef CLK_16MHZ
 	CLKPR = 0x00; // 16Mhz clock
@@ -264,5 +264,4 @@ int main(void) {
 			_u1, _u2, _i1, _i2, _p1, _p2, f1, f2, r1, r2);
 #endif
 	}
-	return 0;
 }
