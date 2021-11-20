@@ -50,7 +50,7 @@ To build, run (with your own MCU):
 
 To install on the device using AVRDUDE, run (with your own programmer):
 
-	sudo make PROG=usbasp flash
+	make PROG=usbasp flash
 
 or for Teensy 2.0:
 

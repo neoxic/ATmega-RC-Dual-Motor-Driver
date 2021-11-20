@@ -90,6 +90,21 @@ static void update(void) {
 	wdt_reset(); // Reset watchdog
 }
 
+static void channel(uint8_t i, uint16_t t) {
+	switch (i) {
+#ifdef IBUS_CH1
+		case IBUS_CH1:
+			i1 = input(t, &u1);
+			break;
+#endif
+#ifdef IBUS_CH2
+		case IBUS_CH2:
+			i2 = input(t, &u2);
+			break;
+#endif
+	}
+}
+
 #ifdef CLK_16MHZ
 #define adjust(x) ((x) >> 1)
 #else
@@ -130,28 +145,17 @@ ISR(USART1_RX_vect) {
 		u = 0xff9f;
 		return;
 	}
-	if (n >= 30 || ++n & 1) return;
+	if (n == 30 || ++n & 1) return;
 	uint16_t t = a | (b << 8);
-	switch (n >> 1) {
-#ifdef IBUS_CH1
-		case IBUS_CH1:
-			i1 = input(t, &u1);
-			break;
-#endif
-#ifdef IBUS_CH2
-		case IBUS_CH2:
-			i2 = input(t, &u2);
-			break;
-#endif
-		case 15: // Checksum
-			if (t != u) return;
-			update();
-
-			// Disable RC channels to avoid conflict
-			TIMSK1 = 0x01;
-			TIMSK3 = 0x00;
-			return;
+	if (n == 30) { // End of chunk
+		if (u != t) return; // Sync lost
+		update();
+		// Disable RC channels to avoid conflict
+		TIMSK1 = 0x01;
+		TIMSK3 = 0x00;
+		return;
 	}
+	channel(n >> 1, t);
 	u -= a + b;
 }
 
@@ -169,7 +173,7 @@ ISR(TIMER1_OVF_vect) {
 }
 
 static int uart_putchar(char c, FILE *f) {
-  while (!(UCSR1A & 0x20)); // UDRE=0 (in progress)
+  while (!(UCSR1A & 0x20)); // UDRE=0 (TX in progress)
   UDR1 = c;
   return 0;
 }
