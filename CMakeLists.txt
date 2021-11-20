@@ -8,11 +8,12 @@ endif()
 set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_PROCESSOR avr)
 set(CMAKE_C_COMPILER avr-gcc)
-set(CMAKE_C_FLAGS -mmcu=${MCU}) # Architecture flags
+set(CMAKE_C_FLAGS "-mmcu=${MCU} -Os")
+set(CMAKE_C_FLAGS_DEBUG "-O0 -g")
 set(OBJCOPY avr-objcopy)
 find_program(AVRDUDE avrdude)
 find_program(TEENSYLOADER NAMES teensy_loader_cli teensy-loader-cli)
-add_compile_options(-Os -g -ffreestanding -ffunction-sections -fdata-sections -fsingle-precision-constant
+add_compile_options(-ffreestanding -ffunction-sections -fdata-sections -fsingle-precision-constant
 	-Wall -Wextra -Wpedantic -Wundef -Wshadow -Wredundant-decls -Wstrict-prototypes -Wmissing-prototypes
 	-Wno-variadic-macros -Wno-unused-result -Wno-unused-parameter -Wno-unused-function)
 add_executable(main.elf src/main.c)
