@@ -90,21 +90,6 @@ static void update(void) {
 	wdt_reset(); // Reset watchdog
 }
 
-static void channel(uint8_t i, uint16_t t) {
-	switch (i) {
-#ifdef IBUS_CH1
-		case IBUS_CH1:
-			i1 = input(t, &u1);
-			break;
-#endif
-#ifdef IBUS_CH2
-		case IBUS_CH2:
-			i2 = input(t, &u2);
-			break;
-#endif
-	}
-}
-
 #ifdef CLK_16MHZ
 #define adjust(x) ((x) >> 1)
 #else
@@ -155,7 +140,18 @@ ISR(USART1_RX_vect) {
 		TIMSK3 = 0x00;
 		return;
 	}
-	channel(n >> 1, t);
+	switch (n >> 1) {
+#ifdef IBUS_CH1
+		case IBUS_CH1:
+			i1 = input(t, &u1);
+			break;
+#endif
+#ifdef IBUS_CH2
+		case IBUS_CH2:
+			i2 = input(t, &u2);
+			break;
+#endif
+	}
 	u -= a + b;
 }
 
