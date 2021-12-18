@@ -1,7 +1,7 @@
-RC-PWM-Mixer firmware for ATmega MCUs
-=====================================
+RC Dual Motor Driver firmware for ATmega MCUs
+=============================================
 
-This firmware turns an ATmega MCU into an RC (radio control) bidirectional 2-channel PWM motor controller:
+This firmware turns an ATmega MCU into an RC (radio control) bidirectional dual motor driver:
 
 * By default, RC channel 1 controls forward/reverse for both motors while RC channel 2 controls differential steering between them.
 * In independent mode, RC channels 1 and 2 control the motors independently.
@@ -79,4 +79,4 @@ Numbers denote Arduino pins.
 Building a dual 12A bidirectional ESC
 -------------------------------------
 
-Check out this [How-To](https://github.com/neoxic/STM8-RC-PWM-Mixer#building-a-dual-12a-bidirectional-esc) for more information.
+Check out this [How-To](https://github.com/neoxic/STM8-RC-Dual-Motor-Driver#building-a-dual-12a-bidirectional-esc) for more information.

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(rcmixer C)
+project(RC-Dual-Motor-Driver C)
 set(MCU "" CACHE STRING "Target MCU.")
 string(TOLOWER ${MCU} MCU)
 if(NOT MCU MATCHES "^(atmega16u4|atmega32u4|atmega32u6)$")
@@ -15,7 +15,7 @@ find_program(AVRDUDE avrdude)
 find_program(TEENSYLOADER NAMES teensy_loader_cli teensy-loader-cli)
 add_compile_options(-ffreestanding -ffunction-sections -fdata-sections -fsingle-precision-constant
 	-Wall -Wextra -Wpedantic -Wundef -Wshadow -Wredundant-decls -Wstrict-prototypes -Wmissing-prototypes
-	-Wno-variadic-macros -Wno-unused-result -Wno-unused-parameter -Wno-unused-function)
+	-Wno-variadic-macros -Wno-unused-result -Wno-unused-parameter)
 add_executable(main.elf src/main.c)
 target_compile_options(main.elf PRIVATE -Wa,-adhlns=main.lst)
 add_custom_command(
