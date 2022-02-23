@@ -31,7 +31,7 @@ Dependencies
 Installation
 ------------
 
-Check out _#defines_ at the beginning of _src/config.h_ to see if you need to change settings before building the firmware. Options to consider:
+Check out _#define_ statements at the beginning of _src/config.h_ to see if you need to change settings before building the firmware. Options to consider:
 
 * The default PWM frequency is 16kHz at 8Mhz clock. It can be decreased by a multiple of 2 using the PWM_DIV value. It can also be doubled by switching to 16Mhz clock via the CLK_16MHZ option.
 

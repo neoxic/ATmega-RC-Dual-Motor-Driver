@@ -19,7 +19,7 @@
 
 // #define INDEP // Independent mode
 // #define DEBUG // Debug mode (UART_TX on pin D3 at 115200 baud)
-// #define CLK_16MHZ // Use F_CPU=16Mhz instead of 8Mhz
+// #define CLK_16MHZ // Use F_CPU=16Mhz instead of 8Mhz (VCC=5V is required)
 // #define CLK_TRIM 0 // Internal clock trimming
 #define PWM_MIN 10 // Minimum non-zero PWM duty cycle (%)
 #define PWM_MAX 100 // Maximum non-zero PWM duty cycle (%)
