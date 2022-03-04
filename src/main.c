@@ -182,9 +182,6 @@ void main(void) {
 #else
 	CLKPR = 0x01; // 8Mhz clock
 #endif
-#ifdef CLK_TRIM
-	OSCCAL += CLK_TRIM;
-#endif
 
 	PWM1_DDR |= PWM1_PIN;
 	PWM2_DDR |= PWM2_PIN;

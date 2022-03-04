@@ -39,8 +39,6 @@ Check out _#define_ statements at the beginning of _src/config.h_ to see if you 
 
 * If iBUS is used, RC-to-RX channel mapping can be configured using the IBUS_CHx values.
 
-* Internal clock source trimming may be necessary for correct RC signal sampling by tuning the CLK_TRIM value. To check accuracy, build in debug mode (uncomment the corresponding _#define_ in _src/config.h_), install the firmware, connect your console to pin D3 (UART_TX) at 115200 baud, make sure the control sticks are properly adjusted and are in the middle position, and check that CHx values are as close to 1500 as possible. If they are higher, the clock is too fast (increase CLK_TRIM). If they are lower, the clock is too slow (decrease CLK_TRIM). Don't forget to disable debug mode, rebuild and reinstall. A more robust approach would be to use an external clock source (if present) by programming the corresponding fuse bits. Alternatively, a FlySky receiver can be connected via iBUS.
-
 
 To build, run (with your own MCU):
 
