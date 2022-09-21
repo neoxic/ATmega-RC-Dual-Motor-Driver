@@ -131,7 +131,7 @@ ISR(USART1_RX_vect) {
 		return;
 	}
 	if (n == 30 || ++n & 1) return;
-	uint16_t v = a | (b << 8);
+	uint16_t v = a | b << 8;
 	if (n == 30) { // End of chunk
 		if (u != v) return; // Sync lost
 		update();
