@@ -2,4 +2,4 @@
 set -e # Exit on error
 CMD="@AVRDUDE@ -p @MCU@ -c ${PROG}"
 echo ":: Flashing firmware..."
-$CMD -U flash:w:main.ihx:i
+$CMD -U flash:w:main.hex:i

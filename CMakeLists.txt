@@ -19,11 +19,11 @@ add_compile_options(-ffreestanding -ffunction-sections -fdata-sections -fsingle-
 add_executable(main.elf src/main.c)
 target_compile_options(main.elf PRIVATE -Wa,-adhlns=main.lst)
 add_custom_command(
-	OUTPUT main.ihx
-	COMMAND ${OBJCOPY} -O ihex main.elf main.ihx
+	OUTPUT main.hex
+	COMMAND ${OBJCOPY} -O ihex main.elf main.hex
 	DEPENDS main.elf
 )
-add_custom_target(main ALL DEPENDS main.ihx)
-add_custom_target(flash COMMAND ${CMAKE_BINARY_DIR}/flash DEPENDS main.ihx)
-add_custom_target(flash-teensy COMMAND ${TEENSYLOADER} -w -v --mcu=${MCU} main.ihx DEPENDS main.ihx)
+add_custom_target(main ALL DEPENDS main.hex)
+add_custom_target(flash COMMAND ${CMAKE_BINARY_DIR}/flash DEPENDS main.hex)
+add_custom_target(flash-teensy COMMAND ${TEENSYLOADER} -w -v --mcu=${MCU} main.hex DEPENDS main.hex)
 configure_file(etc/flash.in flash @ONLY)
